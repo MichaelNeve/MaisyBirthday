@@ -1,243 +1,472 @@
 <!DOCTYPE html>
 <style>
-h1 {
+  h1 {
     text-align:center;
 }
 .header {
-  padding: 30px;
+  padding: 1px;
   text-align: center;
-  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(188,45,253,1) 100%);
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgb(66, 45, 120,1) 100%);
   color: white;
-  font-size: 30px;
-}
-.colmid{
-   position: relative;
-   width: 100%;
-   right: 40%;
+  font-size: 25px;
 }
 .footer{
    width: 100%;
    background-color: #422d78;
-}
-body {
-   padding: 0px;
-   margin: 0px;
-   font-size: 90%;
-}
-.speech {
-    background-color: #f8f8f8;
-    border: 1px solid #c8c8c8;
-    border-radius: 5px;
-    width: 110px;
-    text-align: center;
-    padding: 20px;
-    position: absolute;
+   color: #ffffff;
 }
 .bubble {
   border-radius: 15px 50px 30px;
-  background: Violet;
-  padding: 20px;
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgb(66, 45, 120,1) 100%);
+  padding: 30px;
   width: 200px;
-  height: 150px;
+  height:;
+  text-align: center;
+  vertical-align: middle;
+  color: #ffffff;
+  font-weight: 900;
 }
 div.background{
   background-image: url(background.jpg);
   background-size: cover;
-  opacity: 0.5;
-  border: 2px solid;
-  resize: both;
+  opacity: 1;
+  border: 1px solid;
+  text-align: center;
 }
-div.transbox {
-  margin: 30px;
-  border-radius: 5px;
-  background-color: #ffffff;
-  border: 1px solid black;
-  opacity: 0.6;
+.center {
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
 <script type="text/javascript">
-// <![CDATA[
-var colour="#422d78";
-var sparkles=120;
+  // <![CDATA[
+  var colour = "#22c1c3";
+  var sparkles = 120;
 
-/****************************
-*  Tinkerbell Magic Sparkle *
-* (c) 2005 mf2fm web-design *
-*  http://www.mf2fm.com/rv  *
-* DON'T EDIT BELOW THIS BOX *
-****************************/
-var x=ox=400;
-var y=oy=300;
-var swide=800;
-var shigh=600;
-var sleft=sdown=0;
-var tiny=new Array();
-var star=new Array();
-var starv=new Array();
-var starx=new Array();
-var stary=new Array();
-var tinyx=new Array();
-var tinyy=new Array();
-var tinyv=new Array();
+  /****************************
+   *  Tinkerbell Magic Sparkle *
+   * (c) 2005 mf2fm web-design *
+   *  http://www.mf2fm.com/rv  *
+   * DON'T EDIT BELOW THIS BOX *
+   ****************************/
+  var x = ox = 400;
+  var y = oy = 300;
+  var swide = 800;
+  var shigh = 600;
+  var sleft = sdown = 0;
+  var tiny = new Array();
+  var star = new Array();
+  var starv = new Array();
+  var starx = new Array();
+  var stary = new Array();
+  var tinyx = new Array();
+  var tinyy = new Array();
+  var tinyv = new Array();
 
-window.onload=function() { if (document.getElementById) {
-  var i, rats, rlef, rdow;
-  for (var i=0; i<sparkles; i++) {
-    var rats=createDiv(3, 3);
-    rats.style.visibility="hidden";
-    document.body.appendChild(tiny[i]=rats);
-    starv[i]=0;
-    tinyv[i]=0;
-    var rats=createDiv(5, 5);
-    rats.style.backgroundColor="transparent";
-    rats.style.visibility="hidden";
-    var rlef=createDiv(1, 5);
-    var rdow=createDiv(5, 1);
-    rats.appendChild(rlef);
-    rats.appendChild(rdow);
-    rlef.style.top="2px";
-    rlef.style.left="0px";
-    rdow.style.top="0px";
-    rdow.style.left="2px";
-    document.body.appendChild(star[i]=rats);
-  }
-  set_width();
-  sparkle();
-}}
-
-function sparkle() {
-  var c;
-  if (x!=ox || y!=oy) {
-    ox=x;
-    oy=y;
-    for (c=0; c<sparkles; c++) if (!starv[c]) {
-      star[c].style.left=(starx[c]=x)+"px";
-      star[c].style.top=(stary[c]=y)+"px";
-      star[c].style.clip="rect(0px, 5px, 5px, 0px)";
-      star[c].style.visibility="visible";
-      starv[c]=50;
-      break;
+  window.onload = function() {
+    if (document.getElementById) {
+      var i, rats, rlef, rdow;
+      for (var i = 0; i < sparkles; i++) {
+        var rats = createDiv(3, 3);
+        rats.style.visibility = "hidden";
+        document.body.appendChild(tiny[i] = rats);
+        starv[i] = 0;
+        tinyv[i] = 0;
+        var rats = createDiv(5, 5);
+        rats.style.backgroundColor = "transparent";
+        rats.style.visibility = "hidden";
+        var rlef = createDiv(1, 5);
+        var rdow = createDiv(5, 1);
+        rats.appendChild(rlef);
+        rats.appendChild(rdow);
+        rlef.style.top = "2px";
+        rlef.style.left = "0px";
+        rdow.style.top = "0px";
+        rdow.style.left = "2px";
+        document.body.appendChild(star[i] = rats);
+      }
+      set_width();
+      sparkle();
     }
   }
-  for (c=0; c<sparkles; c++) {
-    if (starv[c]) update_star(c);
-    if (tinyv[c]) update_tiny(c);
-  }
-  setTimeout("sparkle()", 40);
-}
 
-function update_star(i) {
-  if (--starv[i]==25) star[i].style.clip="rect(1px, 4px, 4px, 1px)";
-  if (starv[i]) {
-    stary[i]+=1+Math.random()*3;
-    if (stary[i]<shigh+sdown) {
-      star[i].style.top=stary[i]+"px";
-      starx[i]+=(i%5-2)/5;
-      star[i].style.left=starx[i]+"px";
+  function sparkle() {
+    var c;
+    if (x != ox || y != oy) {
+      ox = x;
+      oy = y;
+      for (c = 0; c < sparkles; c++)
+        if (!starv[c]) {
+          star[c].style.left = (starx[c] = x) + "px";
+          star[c].style.top = (stary[c] = y) + "px";
+          star[c].style.clip = "rect(0px, 5px, 5px, 0px)";
+          star[c].style.visibility = "visible";
+          starv[c] = 50;
+          break;
+        }
     }
-    else {
-      star[i].style.visibility="hidden";
-      starv[i]=0;
-      return;
+    for (c = 0; c < sparkles; c++) {
+      if (starv[c]) update_star(c);
+      if (tinyv[c]) update_tiny(c);
     }
+    setTimeout("sparkle()", 40);
   }
-  else {
-    tinyv[i]=50;
-    tiny[i].style.top=(tinyy[i]=stary[i])+"px";
-    tiny[i].style.left=(tinyx[i]=starx[i])+"px";
-    tiny[i].style.width="2px";
-    tiny[i].style.height="2px";
-    star[i].style.visibility="hidden";
-    tiny[i].style.visibility="visible"
-  }
-}
 
-function update_tiny(i) {
-  if (--tinyv[i]==25) {
-    tiny[i].style.width="1px";
-    tiny[i].style.height="1px";
-  }
-  if (tinyv[i]) {
-    tinyy[i]+=1+Math.random()*3;
-    if (tinyy[i]<shigh+sdown) {
-      tiny[i].style.top=tinyy[i]+"px";
-      tinyx[i]+=(i%5-2)/5;
-      tiny[i].style.left=tinyx[i]+"px";
-    }
-    else {
-      tiny[i].style.visibility="hidden";
-      tinyv[i]=0;
-      return;
+  function update_star(i) {
+    if (--starv[i] == 25) star[i].style.clip = "rect(1px, 4px, 4px, 1px)";
+    if (starv[i]) {
+      stary[i] += 1 + Math.random() * 3;
+      if (stary[i] < shigh + sdown) {
+        star[i].style.top = stary[i] + "px";
+        starx[i] += (i % 5 - 2) / 5;
+        star[i].style.left = starx[i] + "px";
+      } else {
+        star[i].style.visibility = "hidden";
+        starv[i] = 0;
+        return;
+      }
+    } else {
+      tinyv[i] = 50;
+      tiny[i].style.top = (tinyy[i] = stary[i]) + "px";
+      tiny[i].style.left = (tinyx[i] = starx[i]) + "px";
+      tiny[i].style.width = "2px";
+      tiny[i].style.height = "2px";
+      star[i].style.visibility = "hidden";
+      tiny[i].style.visibility = "visible"
     }
   }
-  else tiny[i].style.visibility="hidden";
-}
 
-document.onmousemove=mouse;
-function mouse(e) {
-  set_scroll();
-  y=(e)?e.pageY:event.y+sdown;
-  x=(e)?e.pageX:event.x+sleft;
-}
+  function update_tiny(i) {
+    if (--tinyv[i] == 25) {
+      tiny[i].style.width = "1px";
+      tiny[i].style.height = "1px";
+    }
+    if (tinyv[i]) {
+      tinyy[i] += 1 + Math.random() * 3;
+      if (tinyy[i] < shigh + sdown) {
+        tiny[i].style.top = tinyy[i] + "px";
+        tinyx[i] += (i % 5 - 2) / 5;
+        tiny[i].style.left = tinyx[i] + "px";
+      } else {
+        tiny[i].style.visibility = "hidden";
+        tinyv[i] = 0;
+        return;
+      }
+    } else tiny[i].style.visibility = "hidden";
+  }
 
-function set_scroll() {
-  if (typeof(self.pageYOffset)=="number") {
-    sdown=self.pageYOffset;
-    sleft=self.pageXOffset;
-  }
-  else if (document.body.scrollTop || document.body.scrollLeft) {
-    sdown=document.body.scrollTop;
-    sleft=document.body.scrollLeft;
-  }
-  else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
-    sleft=document.documentElement.scrollLeft;
-	sdown=document.documentElement.scrollTop;
-  }
-  else {
-    sdown=0;
-    sleft=0;
-  }
-}
+  document.onmousemove = mouse;
 
-window.onresize=set_width;
-function set_width() {
-  if (typeof(self.innerWidth)=="number") {
-    swide=self.innerWidth;
-    shigh=self.innerHeight;
+  function mouse(e) {
+    set_scroll();
+    y = (e) ? e.pageY : event.y + sdown;
+    x = (e) ? e.pageX : event.x + sleft;
   }
-  else if (document.documentElement && document.documentElement.clientWidth) {
-    swide=document.documentElement.clientWidth;
-    shigh=document.documentElement.clientHeight;
-  }
-  else if (document.body.clientWidth) {
-    swide=document.body.clientWidth;
-    shigh=document.body.clientHeight;
-  }
-}
 
-function createDiv(height, width) {
-  var div=document.createElement("div");
-  div.style.position="absolute";
-  div.style.height=height+"px";
-  div.style.width=width+"px";
-  div.style.overflow="hidden";
-  div.style.backgroundColor=colour;
-  return (div);
-}
-// ]]>
+  function set_scroll() {
+    if (typeof(self.pageYOffset) == "number") {
+      sdown = self.pageYOffset;
+      sleft = self.pageXOffset;
+    } else if (document.body.scrollTop || document.body.scrollLeft) {
+      sdown = document.body.scrollTop;
+      sleft = document.body.scrollLeft;
+    } else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+      sleft = document.documentElement.scrollLeft;
+      sdown = document.documentElement.scrollTop;
+    } else {
+      sdown = 0;
+      sleft = 0;
+    }
+  }
+
+  window.onresize = set_width;
+
+  function set_width() {
+    if (typeof(self.innerWidth) == "number") {
+      swide = self.innerWidth;
+      shigh = self.innerHeight;
+    } else if (document.documentElement && document.documentElement.clientWidth) {
+      swide = document.documentElement.clientWidth;
+      shigh = document.documentElement.clientHeight;
+    } else if (document.body.clientWidth) {
+      swide = document.body.clientWidth;
+      shigh = document.body.clientHeight;
+    }
+  }
+
+  function createDiv(height, width) {
+    var div = document.createElement("div");
+    div.style.position = "absolute";
+    div.style.height = height + "px";
+    div.style.width = width + "px";
+    div.style.overflow = "hidden";
+    div.style.backgroundColor = colour;
+    return (div);
+  }
+  // ]]>
 </script>
 <html>
+
 <body>
   <div class="background">
     <div class="header">
-	    <h1>Happy Birthday!</h1>
+      <h1>Happy Birthday!</h1>
     </div>
-        <div class="transbox">
-          <p> Hello! You have found your 
-        </div>
+    <table class="center">
+      <tbody>
+        <tr>
+          <td colspan="3" style="color:white;text-align:center">
+            <h2><u> Enjoy your "Card!" </u></h2>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="bubble">
+              Happy birthday to Maisy 😍
+              Love you! I hope you will be happy this year.
+              If you want to help anything, I help as possible as.
+              Miss you ❤️ - @mog_megu / Megumi
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Happy!! Happy!! Birthday!!! Maisy!!!
+              I wish you love and happiness on this
+              wonderful day!!! - @kan_shibuta / Kan Shibuta
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Happy Birthday you AMAZING woman!!! Seriously, you're such a joy to be around and you make me want to be a better person every day. That sounds super cheesy but it's true. I hope you have a wonderful birthday! - @JENTranslations / Jenn
+              O'Donnell
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="bubble">
+              Arili is all grown up now! Time for a fudge feast. - Chris
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Maisy!! Happy biiiiirthdaay! I hope you will have a nice and relaxing day to enjoy together with Mitch! Lots of hugs and frogs! - Montse
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Maisy you're just the best and meeting you has been such a highlight. I can't wait for us to go on another Dragon Quest Rampage. All the love and happy birthdaayyyyyyyyyyyyyyyyy! - @BlessRNG / Brad
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="bubble">
+              Happy birthday lovely, missing you loads, I hope you have a wonderful day full of happiness. 😘❤☺ - Jimmy!!!! 😊
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Have the best day my love. Hopefully next time you're here we can play hide and seek again. 😂❤️ - Rachel.
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Happy birthday sis! You're the best, I can't wait to hang out soon 😊 - Tim
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="bubble">
+              Hey, girl! Happy birthday! I hope all is well! I can’t wait for all this shit to be over and we can go out again. I miss you and I love you! ❤️ - Shin Kawano
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Hope you have a wonderful day!! it's been a long ass time!! 💞💞 - @KatieKirkham2 / Katie k
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Happy Birthday!! I hope you have a fabulous day however you can. Miss you lots, stay safe xxx - Melmo!
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="bubble">
+              Hey Maisy!!! Happy Birthday!! I hope you have the most amazing day filled with happiness and joy and great people (Mitch!!) and yummy food!! I wish I could spend your special day with you, I miss all the fun times we have had like
+              going to karaoke and making food and hanging out in your dorm room, Amity!! And just being silly together in general! I really hope that all this can be possible again soon and we can create more fun memories and laugh a lot. Thank you
+              for always being an amazing friend, you are always going to be one of my best friends girl no matter how much time has passed since we last saw each other. Let me know what you get up to today! I love you and miss you so so so much!
+              xxx - Marlene
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Dear Maisy,
+              I hope you have a birthday that’s every bit as amazing as you! You are a kickass, inspiring individual I am so grateful to have in my life. I can’t wait until we can hang out again so we can celebrate and game together. Hope this next
+              year has even greater successes and adventures in store for you!
+              - @SamuelAllenTL / Sam
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Happy Birthday! I can't wait to hang out, talk about fun things, and play board games with you! Stay happy and safe, and more than anything...enjoy your birthday! - @GawyntheGreen / Gavin
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="bubble">
+              MAISY!!! You are just a bottle of sunshine and I am so happy we became such fast friends. I hope you have an absolutely stellar birthday. I will be celebrating on the other side of the world! - @Dannibelow / Danni Loe
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Happy Birthday Ami ❤️♥️❤️ So sorry there isn’t some way for us to celebrate it together, hope you have an fantastic day 🙌 you’re an amazing person and I love having you in my life, so I shall definitely be having a whisky to celebrate
+              you entering the world! 🥃 lots of love xxxxxxx - @Malefacto / Gary
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Happy birthday Marist, have a fantastic day!!! - @Ippzii / Ash
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="bubble">
+              Hey Maisy!!! Happy birthday, you have successfully survived another year (double xp for this one actually)! I hope to see you in 3 whole dimensions before your next one!! Stay sexy xx - @Transtechnicals / Bekah
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              メイジーお誕生日おめでとう！
+              イギリスで一緒にジャンプの旅したり、パジャマパーティーしたの懐かしいね！
+              近所に住んでるし、また会えるの楽しみにしてるね
+              メイジーにとって素敵な一年になりますように♡ - Mao
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Happy Birthday beautiful babe!! Wishing you a lovely day, here's hoping we can see each other again soon! ♥️♥️♥️ - @cerengunes / Ceren
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="bubble">
+              お誕生日おめでとうございます٩(ˊᗜˋ*)و - 加藤です。
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Happy birthday to you! I hope I have more opportunity to work with you further. - @guianakouji / coZy
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Happy Birthday Maisy!! So proud of all your achievements in Japan!!! 頑張れ先輩♡ - Ella
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="bubble">
+              Maisy, I hope you have an absolutely wonderful birthday!! You're such an incredible person, always so loving and hilarious and determined. I feel lucky to have met you and I'm glad that I get to see you living your best life! Love
+              ya!!! - Michelle
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Congratulations！お誕生日おめでとう🎉
+              メイジー、久しぶりだね！
+              元気にしてると良いな😊
+              お誕生日は素敵な時間が過ごせますように！そして、これからも素敵な人生を歩めますよう祈ってます☺️ - Yukiko Yuasa（ゆっきー〕
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Happy birthday Maisy! You're such an amazing person and role model to so many translators out there! You're so friendly and kind and have so many friends who love you :) Keep doing what you do! - @leotranslations / Leo
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="bubble">
+              Happy birthday Maisy!
+              Hope everything is well xxx - Estee
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Happy Birthday Maisy!!! I can't wait for our next in person sleepover with delicious apple streusel at 4am ^.^ - Iridium
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              happy birthday for Maisy!!!!
+              メイジーと出逢って今までの俺の人生の中では有り得ない体験や学びが多くとても感謝してます^_^
+              これからも元気で明るい特別な存在で居てください( ^ω^ ) - @NA_surai / 坂本裕太
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="bubble">
+              Hi Maisy,
+              Sending you smiles for every moment of your special day!
+              Have a wonderful time and a very happy birthday to you :) - @kelly.sito / Kelly
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Have a wonderful day chilling on your 30th Birthday! - Mum
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Happy Birthday! おめでとう! MaisyがいなければKickstarterは成功しませんでした！本当にありがとう！これからもずっとウチのゲームを担当してください！ - @economic_wars / 大門 聖史 ( Satochika DAIMON)
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="bubble">
+              Happy!! Happy!! Birthday!!! Maisy!!!
+              I wish you love and happiness on this
+              wonderful day!!! - @kan_shibuta / Kan Shibuta
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              HAVE A SMASHING 30TH OLD LADY! I hope you have a great day. I'll be on it in a month's time! Xx - @Charlie_ingram3 / Charlie Ingram
+            </p>
+          </td>
+          <td>
+            <p class="bubble">
+              Happybirthday!!!
+              お久しぶりです！一緒にスノーボード行った以来なかなか会えないけど元気ですか？
+
+              私達夫婦に素敵な宝物ができたよ👶
+              奈旺(Nao)って名前だよ❤女の子です！
+              コロナで遊ぶのも難しい状況だけど
+              早く会える日を心待ちにしています。
+              私達Familyと仲良くしてね！
+              メイジーの1年が幸多い日々であります様に。
+
+              愛をこめて。- Makoto＆Miho＆Nao Family♡
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
     <div class="footer">
-	    2021 - Michael Neve ~ Birthday Time!
+      <p style="text-align:Center">2021 - Michael Neve ~ Birthday Time!<p>
     </div>
   </div>
+  </div>
 </body>
+
 </html>
