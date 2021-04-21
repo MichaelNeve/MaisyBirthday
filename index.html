@@ -4,59 +4,25 @@ h1 {
     text-align:center;
 }
 .header {
-  padding: 60px;
+  padding: 30px;
   text-align: center;
-  background: #1abc9c;
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(188,45,253,1) 100%);
   color: white;
   font-size: 30px;
-}
-.colmask{
-   position: relative;
-   overflow: hidden;
-   margin: 0px auto;
-   width: 100%;
 }
 .colmid{
    position: relative;
    width: 100%;
    right: 40%;
 }
-.colleft{
-   position: relative;
-   width: 100%;
-   right: 40%;
-}
-.col1{
-   position: relative;
-   overflow: hidden;
-   float: left;
-   width: 38%;
-   left: 101%;
-}
-.col2{
-   position: relative;
-   overflow: hidden;
-   float: left;
-   width: 19%;
-   left: 42%;
-}
-.col3{
-   position: relative;
-   overflow: hidden;
-   float: left;
-   width: 39%;
-   left: 84%;
-}
 .footer{
-   float: left;
    width: 100%;
-   background-color: #6633ff
+   background-color: #422d78;
 }
 body {
    padding: 0px;
    margin: 0px;
    font-size: 90%;
-   background-image: url(background.png);
 }
 .speech {
     background-color: #f8f8f8;
@@ -67,10 +33,31 @@ body {
     padding: 20px;
     position: absolute;
 }
+.bubble {
+  border-radius: 15px 50px 30px;
+  background: Violet;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+}
+div.background{
+  background-image: url(background.jpg);
+  background-size: cover;
+  opacity: 0.5;
+  border: 2px solid;
+  resize: both;
+}
+div.transbox {
+  margin: 30px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  opacity: 0.6;
+}
 </style>
 <script type="text/javascript">
 // <![CDATA[
-var colour="#a800ff";
+var colour="#422d78";
 var sparkles=120;
 
 /****************************
@@ -241,26 +228,16 @@ function createDiv(height, width) {
 </script>
 <html>
 <body>
-<div class="colmask">
+  <div class="background">
     <div class="header">
 	    <h1>Happy Birthday!</h1>
     </div>
-        <div class="colmid">
-            <div class="colleft">
-                <div class="col1">
-                        Test1
-                </div>
-                <div class="col2">
-text
-                </div>
-                <div class="col3">
-text
-                </div>
-            </div>
+        <div class="transbox">
+          <p> Hello! You have found your 
         </div>
     <div class="footer">
 	    2021 - Michael Neve ~ Birthday Time!
     </div>
-</div>
+  </div>
 </body>
 </html>
